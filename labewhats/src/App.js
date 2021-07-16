@@ -1,42 +1,70 @@
-import logo from './logo.svg';
 import './App.css';
-/* import styled from 'styled-components' */
+import React from "react";
 
 
 
 
-class AppPrincipal extends React.Components {
+class App extends React.Component {
   state = {
-    mensagens = [],
+    mensagens: [],
     valorInputUsuario: "",
-    valorInputMensagem:""
+    valorInputMensagem: ""
   }
+
+  adicionaMensagem = () => {
+
+    const novaMensagem = {
+      usuario: this.state.valorInputUsuario,
+      mensagem: this.state.valorInputMensagem
+    };
+    const novasMensagens = [...this.state.mensagens, novaMensagem];
+
+    this.setState({
+      mensagens: novasMensagens,
+      valorInputMensagem: ""
+    });
+
+
+  };
+
 
   onChangeUsuario = (event) => {
     this.setState({ valorInputUsuario: event.target.value })
   }
 
   onChangeMensagem = (event) => {
-    
+    this.setState({ valorInputMensagem: event.target.value })
   }
 
 
   render() {
+
+    const listaDeMensagens = this.state.mensagens.map((mensagem) => {
+      return (
+        <p>
+          {mensagem.usuario} : {mensagem.mensagem}
+        </p>
+      );
+
+    });
+
+
     return (
-    <div>
-      <input 
-      value = {this.state.valorInputUsuario}
-      placeholder = {"Usuário"}
-      onChange = {this.onChangeUsuario}
-            
-      />
-      <input 
-      value = {this.state.valorInputMensagem}
-      placeholder = {"Mensagem"}
-      onChange = {this.onChangeMensagem}
-            
-      />
-    </div>  
+      <div>
+        <h1>TESTE</h1>
+        <div>{listaDeMensagens}</div>
+        <input
+          value={this.state.valorInputUsuario}
+          onChange={this.onChangeUsuario}
+          placeholder={"Usuário"}
+        />
+        <input
+          value={this.state.valorInputMensagem}
+          onChange={this.onChangeMensagem}
+          placeholder={"Mensagem"}
+        />
+        <button onClick={this.adicionaMensagem}>Adicionar</button>
+      </div>
     )
   }
 }
@@ -45,77 +73,40 @@ class AppPrincipal extends React.Components {
 export default App;
 
 
-class App extends React.Component {
-  state = {
-    posts: arrayPosts,
-    userName: "",
-    userPhoto: "",
-    postPhoto: ""
-  };
+//   changeUserPhoto = (event) => {
+//     this.setState({ userPhoto: event.target.value });
+//   };
 
-  changeUserName = (event) => {
-   ;
-  };
+//   changePostPhoto = (event) => {
+//     this.setState({ postPhoto: event.target.value });
+//   };
 
-  changeUserPhoto = (event) => {
-    this.setState({ userPhoto: event.target.value });
-  };
 
-  changePostPhoto = (event) => {
-    this.setState({ postPhoto: event.target.value });
-  };
 
-  addNewPost = () => {
-    const newPost = {
-      nomeUsuario: this.state.userName,
-      fotoUsuario: this.state.userPhoto,
-      fotoPost: this.state.postPhoto
-    };
+//   render() {
+//     const componentesPost = this.state.posts.map((p) => {
+//       return (
+//         <Post
+//           nomeUsuario={p.nomeUsuario}
+//           fotoUsuario={p.fotoUsuario}
+//           fotoPost={p.fotoPost}
+//         />
+//       );
+//     });
 
-    this.setState({
-      posts: [...this.state.posts, newPost],
-      userName: "",
-      userPhoto: "",
-      postPhoto: ""
-    });
-  };
+//     return (
+//       <AppContainer>
+//         <FormContainer>
+//           <input
 
-  render() {
-    const componentesPost = this.state.posts.map((p) => {
-      return (
-        <Post
-          nomeUsuario={p.nomeUsuario}
-          fotoUsuario={p.fotoUsuario}
-          fotoPost={p.fotoPost}
-        />
-      );
-    });
-
-    return (
-      <AppContainer>
-        <FormContainer>
-          <input
-            placeholder={"Nome do Usuário"}
-            value={this.state.userName}
-            onChange={this.changeUserName}
-          />
-          <input
-            placeholder={"Foto do Usuário"}
-            value={this.state.userPhoto}
-            onChange={this.changeUserPhoto}
-          />
-          <input
-            placeholder={"Foto do Post"}
-            value={this.state.postPhoto}
-            onChange={this.changePostPhoto}
-          />
-          <button onClick={this.addNewPost}>Criar Post</button>
-        </FormContainer>
-        {componentesPost}
-      </AppContainer>
-    );
-  }
-}
+//           />
+//           <button onClick={this.addNewPost}>Criar Post</button>
+//         </FormContainer>
+//         {componentesPost}
+//       </AppContainer>
+//     );
+//   }
+// }
 
 /* const AppContainer = styled.div`
   display: flex;
