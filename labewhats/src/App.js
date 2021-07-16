@@ -13,6 +13,7 @@ import styled from 'styled-components'
     height: 80vh;
     padding: 15px;
     box-sizing: border-box;
+    background-image: url("https://i.redd.it/qwd83nc4xxf41.jpg");
     
   `
 
@@ -67,18 +68,23 @@ class App extends React.Component {
     this.setState({ valorInputMensagem: event.target.value })
   }
 
+  onKeyPress = (e) => {
+    if(e.which === 13) {
+    this.adicionaMensagem();
+  }
+}
 
   render() {
 
     const listaDeMensagens = this.state.mensagens.map((mensagem) => {
       return (
         <p>
-          {mensagem.usuario} : {mensagem.mensagem}
+          <strong>{mensagem.usuario}</strong> : {mensagem.mensagem}
         </p>
       );
 
     });
-
+  
 
     return (
       <div>
@@ -90,14 +96,15 @@ class App extends React.Component {
            value={this.state.valorInputUsuario}
            onChange={this.onChangeUsuario}
            placeholder={"Usuário"}
-           
+          
            />
            <input
            value={this.state.valorInputMensagem}
            onChange={this.onChangeMensagem}
            placeholder={"Mensagem"}
+           onKeyPress={this.onKeyPress}
            />
-          <button type="submit" onClick={this.adicionaMensagem}>Adicionar</button>
+          <button onClick={this.adicionaMensagem}>Adicionar</button>
           </Adicionar>
         </Base>
       </div>
