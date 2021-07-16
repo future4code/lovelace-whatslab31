@@ -1,12 +1,42 @@
 import './App.css';
 import React from "react";
+import styled from 'styled-components'
 
 
+  const BlocoDeMensagens = styled.div`
+    border: 1px solid black ;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 80vw;
+    height: 80vh;
+    padding: 15px;
+    box-sizing: border-box;
+    
+  `
+
+  const Base = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black ;
+    height: 100vh;
+    justify-content: space-around;
+
+    h1 {
+      color: white ;
+      background-color: #00d27f;
+      border-radius: 5px;
+    }
+  ` 
+  const Adicionar = styled.div`
+  ` 
 
 
 class App extends React.Component {
   state = {
-    mensagens: [],
+    mensagens: [{usuario: "aaaaab", mensagem:"ashaushauhs" }],
     valorInputUsuario: "",
     valorInputMensagem: ""
   }
@@ -21,7 +51,8 @@ class App extends React.Component {
 
     this.setState({
       mensagens: novasMensagens,
-      valorInputMensagem: ""
+      valorInputMensagem: "",
+      
     });
 
 
@@ -51,19 +82,24 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>TESTE</h1>
-        <div>{listaDeMensagens}</div>
-        <input
-          value={this.state.valorInputUsuario}
-          onChange={this.onChangeUsuario}
-          placeholder={"Usuário"}
-        />
-        <input
-          value={this.state.valorInputMensagem}
-          onChange={this.onChangeMensagem}
-          placeholder={"Mensagem"}
-        />
-        <button onClick={this.adicionaMensagem}>Adicionar</button>
+        <Base>
+          <h1>Zapenu</h1>
+          <BlocoDeMensagens>{listaDeMensagens}</BlocoDeMensagens>
+          <Adicionar>
+           <input
+           value={this.state.valorInputUsuario}
+           onChange={this.onChangeUsuario}
+           placeholder={"Usuário"}
+           
+           />
+           <input
+           value={this.state.valorInputMensagem}
+           onChange={this.onChangeMensagem}
+           placeholder={"Mensagem"}
+           />
+          <button type="submit" onClick={this.adicionaMensagem}>Adicionar</button>
+          </Adicionar>
+        </Base>
       </div>
     )
   }
