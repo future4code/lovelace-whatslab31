@@ -11,3 +11,9 @@
 ##### O que não funciona:
 * Falta a ferramenta para deletar mensagens;
 * Não há diferenciação das mensagens de acordo com o usuário;
+
+##### Tecnologias utilizadas
+
+ * React
+
+
