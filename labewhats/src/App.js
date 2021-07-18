@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import styled from 'styled-components'
-
+import Titulo from "./components/Titulo"
 
   const BlocoDeMensagens = styled.div`
     border: 1px solid black ;
@@ -25,19 +25,38 @@ import styled from 'styled-components'
     height: 100vh;
     justify-content: space-around;
 
-    h1 {
-      color: white ;
-      background-color: #00d27f;
-      border-radius: 5px;
-    }
+
   ` 
   const Adicionar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   ` 
 
-
+/*   const TituloDoZapson = styled.div`
+      color: white ;
+      background-color: #74d600;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 80vW;
+      text-align: center;
+  ` */
+  const InputsonUsuario = styled.input`
+    width: 125px;
+    border-radius: 15px;
+    height: 30px;
+    margin: 2vw;
+  `
+  const InputsonMensagem = styled.input`
+    width: 40vw;
+    border-radius: 15px;
+    height: 30px;
+    margin-right: 2vw;
+  `
 class App extends React.Component {
   state = {
-    mensagens: [{usuario: "aaaaab", mensagem:"ashaushauhs" }],
+    mensagens: [],
     valorInputUsuario: "",
     valorInputMensagem: ""
   }
@@ -89,16 +108,16 @@ class App extends React.Component {
     return (
       <div>
         <Base>
-          <h1>Zapenu</h1>
+          <Titulo />
           <BlocoDeMensagens>{listaDeMensagens}</BlocoDeMensagens>
           <Adicionar>
-           <input
+           <InputsonUsuario
            value={this.state.valorInputUsuario}
            onChange={this.onChangeUsuario}
            placeholder={"Usuário"}
           
            />
-           <input
+           <InputsonMensagem
            value={this.state.valorInputMensagem}
            onChange={this.onChangeMensagem}
            placeholder={"Mensagem"}
@@ -114,4 +133,5 @@ class App extends React.Component {
 
 
 export default App;
+
 
